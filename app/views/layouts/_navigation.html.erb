@@ -1,4 +1,4 @@
-<ul class="nav">
+ <ul class="nav">
   <li>
     <%= link_to "Postit!", root_path, :class => 'brand' %>
   </li>
@@ -7,6 +7,8 @@
   </li>
 </ul>
 
+
+<!-- Categories dropdown button -->
 <div class="btn-group nav_item">
   <%= link_to '#', class: 'btn btn-small dropdown-toggle', 'data-toggle' => 'dropdown' do %>
     Categories <span class="caret"></span>
@@ -16,19 +18,32 @@
     <% Category.all.each do |category| %>
       <li><%= link_to category.name, category_path(category) %></li>
     <% end %>
-    <li class="divider"></li>
-    <li>
-      <%= link_to(new_category_path) do %>
-        <i class="icon-plus"></i>
-        New Category
-      <% end %>
-    </li>
+    <% if logged_in? %>  
+      <li class="divider"></li>
+      <li>
+        <%= link_to(new_category_path) do %>
+          <i class="icon-plus"></i>
+          New Category
+        <% end %>
+      </li>
+    <% end %>  
   </ul>
 </div>
 
 
-<div class="nav_item">
-  <%= link_to "New Post", new_post_path, class: "btn btn-success btn-small" %>
-</div>
-
-
+<!-- conditional display based on if user is signed in or not -->
+<% if logged_in? %>
+  <div class="nav_item">
+    <%= link_to "New Post", new_post_path, class: "btn btn-success btn-small" %> <!-- New Post -->
+  </div>
+  <div class="nav_item">
+    <%= link_to "Log Out", logout_path, class: "btn btn-small" %> <!-- Log Out -->
+  </div>
+<% else %>
+  <div class="nav_item">
+    <%= link_to "Register", register_path, class: "btn btn-success btn-small" %> <!-- Register/Sign Up -->
+  </div>
+  <div class="nav_item">
+    <%= link_to "Log In", login_path, class: "btn btn-small" %> <!-- Log In -->
+  </div>
+<% end %>

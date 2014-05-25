@@ -1,0 +1,55 @@
+<%= render 'shared/content_title', title: 'Create a New Post' %>
+
+<%= render 'form' %>
+
+
+
+
+
+
+
+
+<!-- THESE ARE EXAMPLES OF DIFFERENT WAYS TO CREATE FORMS --> 
+
+<!-- <h5>Pure HTML</h5>
+<form action='/posts' method='POST'>
+  Title: <input type='text'>
+  <br/>
+  <input type='submit'>
+</form>
+
+<br/>
+
+<h5>Rails Form Helper</h5>
+<%= form_tag '/posts' do %>
+  <%= label_tag :title %>
+  <%= text_field_tag :title %>
+  <br/>
+  <%= submit_tag "Create Post" %>
+<% end %>
+
+<br/>
+
+<h5>Rails Model-Backed Form</h5>
+
+<% if @post.errors.any? %>
+  <div class="alert alert-error">
+    <h5>Oops!</h5>
+    <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+<%= form_for @post do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <br/>
+  <%= f.label :url %>
+  <%= f.text_field :url %>
+  <br/>
+  <%= f.submit "Submit Post" %>
+<% end %> -->
