@@ -4,21 +4,21 @@
   <%= form_for @post do |f| %>
     <div class="control-group"> 
       <%= f.label :title %>
-      <%= f.text_field :title, placeholder: "Awesome Post Title" %>
+      <%= f.text_field :title %>
     </div>
     <div class="control-group">  
       <%= f.label :url %>
-      <%= f.text_field :url, placeholder: "www.example.com" %>
+      <%= f.text_field :url %>
     </div>
     <div class="control-group">
       <%= f.label :description %>
-      <%= f.text_area :description, rows: 5, placeholder: "Unleash your creativity..." %>
+      <%= f.text_area :description, rows: 5 %>
     </div>
     <div class="control-group">
       <%= f.label "Categories" %>
       <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
         <%= cb.label(class: "checkbox inline") {cb.check_box(class: "checkbox") + cb.text} %>
-      <% end %>
+      <% end %> 
     </div> 
       <%= f.submit(@post.new_record? ? "Submit Post" : "Update Post", class: "btn btn-primary") %>
   <% end %>

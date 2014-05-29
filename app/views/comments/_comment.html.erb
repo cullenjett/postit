@@ -1,0 +1,37 @@
+<% show_post ||= false %>
+
+<!-- must pass in a 'voteable' variable -->
+
+
+<div class="row">
+  <!-- vote box -->
+  <div class="well span0 text-center">
+    <% if logged_in? %>
+      <%= link_to vote_post_comment_path(voteable, comment, vote: true), method: 'POST' do %>
+        <i class="icon-arrow-up"></i>
+      <% end %>
+      <br/>
+    <% end %>
+      
+    <%= comment.total_votes %> Votes
+
+    <% if logged_in? %>
+      <br/>
+      <%= link_to vote_post_comment_path(voteable, comment, vote: false), method: 'POST' do %>
+        <i class="icon-arrow-down"></i>
+      <% end %>  
+    <% end %>  
+  </div>
+  
+  
+  <!-- comment box -->
+  <div class="well span8">
+    <em>"<%= comment.body %>"</em>
+    <% if show_post %>
+      on <%= link_to comment.post.title, post_path(comment.post) %>
+    <% end %>
+    <br/>
+    <span class="quiet">by</span> <%= link_to comment.creator.username, user_path(comment.creator) %> on 
+      <small><%= fix_date(comment.created_at) %></small>
+  </div>
+</div>

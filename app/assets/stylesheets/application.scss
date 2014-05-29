@@ -14,6 +14,14 @@
 
  @import "bootstrap";
 
+body {
+  background-image: image-url('geometry.png');
+}
+
+a {
+  color: #339AB8;
+}
+
  .container {
   margin-left: 135px
 }
