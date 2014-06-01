@@ -11,7 +11,7 @@ class Post < ActiveRecord::Base
 
 
   def total_votes
-    up_votes - down_votes
+    self.up_votes - self.down_votes
   end
 
 

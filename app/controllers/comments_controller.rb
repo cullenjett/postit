@@ -22,15 +22,15 @@ class CommentsController < ApplicationController
 
 
   def vote
-    @comment = Comment.find(params[:id])
+    comment = Comment.find(params[:id])
 
-    @vote = Vote.create(voteable: @comment, vote: params[:vote], creator: current_user)
+    vote = Vote.create(voteable: @comment, vote: params[:vote], creator: current_user)
 
-    if @vote.valid?
+    if vote.valid?
       flash[:notice] = "Your vote was counted."
       redirect_to :back
     else
-      flash[:error] = "You can only vote for that once."
+      flash[:error] = "You can only vote on a comment once."
       redirect_to :back
     end
   end
