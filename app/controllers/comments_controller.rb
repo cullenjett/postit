@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     # @post = Post.find(params[:id])
     # @comment = @post.comments.build(params.require(:comment).permit(:body))
     
-    @post = Post.find(params[:post_id])
+    @post = Post.find_by(slug: params[:post_id])
     @comment = Comment.new(params.require(:comment).permit(:body))
     @comment.post = @post
     @comment.creator = current_user
