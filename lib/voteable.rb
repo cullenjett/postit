@@ -1,72 +1,74 @@
-###################
-# Using 'Concern' #
-###################
-
-module Voteable
-  extend ActiveSupport::Concern
+# -- EXTRACTED TO THE voteable_cullen GEM -- #
 
 
-  included do
-    has_many :votes, as: :voteable
-  end
+# ###################
+# # Using 'Concern' #
+# ###################
+
+# module Voteable
+#   extend ActiveSupport::Concern
 
 
-  def total_votes
-      self.up_votes - self.down_votes
-    end
+#   included do
+#     has_many :votes, as: :voteable
+#   end
 
 
-  def up_votes
-    self.votes.where(vote: true).size
-  end
+#   def total_votes
+#       self.up_votes - self.down_votes
+#     end
 
 
-  def down_votes
-    self.votes.where(vote: false).size
-  end
-
-end #Voteable
+#   def up_votes
+#     self.votes.where(vote: true).size
+#   end
 
 
+#   def down_votes
+#     self.votes.where(vote: false).size
+#   end
 
-############################
-# Classic Meta-Programming #
-############################
-
-=begin
-module Voteable
-
-  def self.included(base)
-    base.send(:include, InstanceMethods)
-    base.extend(ClassMethods)
-
-    base.class_eval do
-      add_vote_relationship
-    end
-  end
+# end #Voteable
 
 
-  module InstanceMethods
-    def total_votes
-      self.up_votes - self.down_votes
-    end
+
+# ############################
+# # Classic Meta-Programming #
+# ############################
 
 
-    def up_votes
-      self.votes.where(vote: true).size
-    end
+# module Voteable
+
+#   def self.included(base)
+#     base.send(:include, InstanceMethods)
+#     base.extend(ClassMethods)
+
+#     base.class_eval do
+#       add_vote_relationship
+#     end
+#   end
 
 
-    def down_votes
-      self.votes.where(vote: false).size
-    end
-  end # InstanceMethods
+#   module InstanceMethods
+#     def total_votes
+#       self.up_votes - self.down_votes
+#     end
 
 
-  module ClassMethods
-    def add_vote_relationship
-      has_many :votes, as: :voteable
-    end
-  end #ClassMethods
-end #Voteable
-=end
+#     def up_votes
+#       self.votes.where(vote: true).size
+#     end
+
+
+#     def down_votes
+#       self.votes.where(vote: false).size
+#     end
+#   end # InstanceMethods
+
+
+#   module ClassMethods
+#     def add_vote_relationship
+#       has_many :votes, as: :voteable
+#     end
+#   end #ClassMethods
+# end #Voteable
