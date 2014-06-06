@@ -19,7 +19,9 @@
     
     <div class="control-group">
       <%= f.label "Categories" %>
-      <p class="pull-right">[<%= link_to "New Category", new_category_path %>]</p>
+      <% if logged_in? && current_user.admin? %>
+        <p class="pull-right">[<%= link_to "New Category", new_category_path %>]</p>
+      <% end %>  
       <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
         <%= cb.label(class: "checkbox inline") {cb.check_box(class: "checkbox") + cb.text} %>
       <% end %> 
