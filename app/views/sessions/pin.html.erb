@@ -1,0 +1,15 @@
+<%= render '/shared/content_title', title: "Enter Your PIN to Log In" %>
+
+<p>By supplying your phone number you have turned on two factor authentication.</p> 
+<p>You will recieve a text message with a PIN number. Enter that PIN number here to access your account.</p>
+
+
+<div class="well">
+  <%= form_tag '/pin' do %>
+    <div class="control-group">
+      <%= label_tag :pin, "PIN Number" %>
+      <%= text_field_tag :pin, params[:pin] || '' %>
+    </div>
+    <%= submit_tag "Sign In", class: "btn btn-success" %>
+  <% end %>
+</div>

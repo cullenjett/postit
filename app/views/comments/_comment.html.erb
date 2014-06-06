@@ -29,7 +29,11 @@
       on <%= link_to comment.post.title, post_path(comment.post) %>
     <% end %>
     <br/>
-    <span class="quiet">by</span> <%= link_to comment.creator.username, user_path(comment.creator) %> on 
-      <small><%= fix_date(comment.created_at) %></small>
+    <span class="quiet">By:</span> 
+    <%= link_to comment.creator.username, user_path(comment.creator) %>
+    <% if comment.creator.admin? %>
+      <span class="label label-warning">ADMIN</span>
+    <% end %> 
+    on <small><%= fix_date(comment.created_at) %></small>
   </div>
 </div>

@@ -17,6 +17,15 @@
       <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, default: Time.zone.name %>
     </div>
 
+    <div class="control-group">
+      <%= f.label :phone, "Phone Number <small>(numbers only)</small>".html_safe %>
+      <%= f.text_field :phone, maxlength: 10 %>
+      <%= link_to '#', id: "two_factor_phone" do %>
+        <i class="icon-question-sign"></i>
+      <% end %>
+      <a href="https://www.twilio.com/" class="pull-right" style="text: decoration: none; display: inline-block; width: 166px; height: 0; overflow: hidden; padding-top: 31px; background: url(https://www.twilio.com/packages/company/img/logos_icon_poweredbysmall.png) no-repeat;">powered by Twilio™</a>
+    </div>
+
     <%= f.submit (@user.new_record? ? "Register" : "Update Profile"), class: "btn btn-success" %>
   <% end %>
 </div>

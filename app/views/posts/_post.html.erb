@@ -23,15 +23,25 @@
   <!--Post content box -->
   <div class="span8 well">
     <%= render post.categories %>
-    <h4><%= link_to post.title, fix_url(post.url) %></h4>
-    <p><%= post.description %></p>
-    
-    <p>
-      <span class="quiet">posted by</span> <%= link_to post.creator.username, user_path(post.creator) %> on <small><%= fix_date(post.created_at) %></small>
+
+    <p class="pull-right">  
+      <span class="icon-comment"></span>
+      <small><%= "#{post.comments.size} comment(s)" %></small> 
     </p>
     
-    <span>
-      <%= link_to("#{post.comments.size} comment(s)", post_path(post)) %> 
-    </span>
+    <h4><%= link_to post.title, post_path(post) %></h4>
+
+    <p>
+      <span class="quiet">Posted by:</span> 
+      <%= link_to post.creator.username, user_path(post.creator) %> 
+      <% if post.creator.admin? %>
+        <span class="label label-warning">ADMIN</span>
+      <% end %>
+      on <small><%= fix_date(post.created_at) %></small>
+    </p>
+
+    <p><%= link_to post.url, fix_url(post.url) %></p>
+
+    <p><%= post.description %></p>
   </div>
 </div>
